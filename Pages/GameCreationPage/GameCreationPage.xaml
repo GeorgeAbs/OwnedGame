@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:OwnedGame.Pages.GameCreationPage"
+             xmlns:model="clr-namespace:OwnedGame.Pages.GameCreationPage"
+             x:Class="OwnedGame.Pages.GameCreationPage.GameCreationPage"
+             x:DataType="vm:GameCreationPageVM"
+             x:Name="page">
+
+    <Grid RowDefinitions="auto,auto,auto">
+        <CollectionView x:Name="RowsCollView" Grid.Row="0" ItemsSource="{Binding RoundRows}" HorizontalOptions="Fill" IsVisible="{Binding IsTableVisible}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:RoundRow">
+                    <Grid Padding="1" ColumnDefinitions="2*,*,*,*,*,*,*,*" HorizontalOptions="Fill" RowDefinitions="150" ColumnSpacing="2" BackgroundColor="Yellow">
+                        <Grid Grid.Column="0" BackgroundColor="{Binding BaseColor}" >
+                            <Label Text="{Binding Topic}" IsVisible="{Binding IsEnable}" LineBreakMode="WordWrap" FontSize="Title" TextColor="Yellow"  VerticalOptions="Center" HorizontalOptions="Center" Background="Transparent"/>
+                        </Grid>
+                        <Grid Grid.Column="1" BackgroundColor="{Binding Cell1.Color}">
+                            <Button Command="{Binding Cell1.CellClickCommand}"
+                                    CommandParameter="{Binding Cell1}"
+                                    Text="{Binding Cell1.Price}" 
+                                    IsVisible="{Binding Cell1.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="2" BackgroundColor="{Binding Cell2.Color}">
+                            <Button Command="{Binding Cell2.CellClickCommand}"
+                                    CommandParameter="{Binding Cell2}"
+                                    Text="{Binding Cell2.Price}" 
+                                    IsVisible="{Binding Cell2.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="3" BackgroundColor="{Binding Cell3.Color}">
+                            <Button Command="{Binding Cell3.CellClickCommand}"
+                                    CommandParameter="{Binding Cell3}"
+                                    Text="{Binding Cell3.Price}" 
+                                    IsVisible="{Binding Cell3.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="4" BackgroundColor="{Binding Cell4.Color}">
+                            <Button Command="{Binding Cell4.CellClickCommand}"
+                                    CommandParameter="{Binding Cell4}"
+                                    Text="{Binding Cell4.Price}" 
+                                    IsVisible="{Binding Cell4.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="5" BackgroundColor="{Binding Cell5.Color}">
+                            <Button Command="{Binding Cell5.CellClickCommand}"
+                                    CommandParameter="{Binding Cell5}"
+                                    Text="{Binding Cell5.Price}" 
+                                    IsVisible="{Binding Cell5.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="6" BackgroundColor="{Binding Cell6.Color}">
+                            <Button Command="{Binding Cell6.CellClickCommand}"
+                                    CommandParameter="{Binding Cell6}"
+                                    Text="{Binding Cell6.Price}" 
+                                    IsVisible="{Binding Cell6.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                        <Grid Grid.Column="7" BackgroundColor="{Binding Cell7.Color}">
+                            <Button Command="{Binding Cell7.CellClickCommand}"
+                                    CommandParameter="{Binding Cell7}"
+                                    Text="{Binding Cell7.Price}" 
+                                    IsVisible="{Binding Cell7.IsEnable}" 
+                                    FontSize="Title" 
+                                    TextColor="Yellow" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"
+                                    Background="Transparent"
+                                    MinimumHeightRequest="150"
+                                    MinimumWidthRequest="200"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid Grid.Row="1" BackgroundColor="{Binding NotClickedColor}" MinimumHeightRequest="900" IsVisible="{Binding IsQuestionVisible}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ProceedClickCommand}"/>
+            </Grid.GestureRecognizers>
+            <Label x:Name="questionLabel" 
+                   Text="{Binding Question}"
+                   TextColor="Yellow" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   FontAutoScalingEnabled="True"
+                   FontSize="Header"/>
+            <Image x:Name="ImageQuestion" Source="{Binding ImageSource}" Aspect="Center"/>
+        </Grid>
+        <CollectionView  Grid.Row="2" x:Name="CompetitorsCollView" ItemsSource="{Binding Competitors}" HorizontalOptions="Center" IsVisible="Visible">
+            <CollectionView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ProceedClickCommand}"/>
+            </CollectionView.GestureRecognizers>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="50"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Competitor">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="Center"/>
+                        <Entry Text="{Binding Score}" WidthRequest="200"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
